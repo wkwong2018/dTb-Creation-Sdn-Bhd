@@ -303,5 +303,12 @@
   "sidebar.map.weather": "Weather map",
   "sidebar.extensions.shuffle": "Shuffle",
   "sidebar.extensions.profile": "Profile",
-  "sidebar.social": "Social Apps"
+  "sidebar.social": "Social Apps",
+  "sidebar.payment": "Payment",
+  "sidebar.spending": "Spending",
+  "sidebar.accounts": "Accounts",
+  "sidebar.accounts.maintenance": "Account Maintenance",
+  "sidebar.accounts.fullList": "Full Account List",
+  "sidebar.accounts.suspends": "Suspended Account",
+  "sidebar.summary": "Summary"
 }

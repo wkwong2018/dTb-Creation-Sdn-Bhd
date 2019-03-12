@@ -53,6 +53,46 @@ class SidebarContent extends Component {
               selectedKeys={[selectedKeys]}
               theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
               mode="inline">
+              <Menu.Item key="summary">
+                <Link to="/summary">
+                  <i className="icon icon-listing-dbrd"/>
+                  <IntlMessages id="sidebar.summary"/>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="payment">
+                <Link to="/payment">
+                  <i className="icon icon-listing-dbrd"/>
+                  <IntlMessages id="sidebar.payment"/>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="spending">
+                <Link to="/spending">
+                  <i className="icon icon-listing-dbrd"/>
+                  <IntlMessages id="sidebar.spending"/>
+                </Link>
+              </Menu.Item>
+              <SubMenu key="Accounts" className={this.getNavStyleSubMenuClass(navStyle)}
+                        title={<span> <i className="icon icon-dasbhoard"/>
+                        <IntlMessages id="sidebar.accounts"/></span>}>
+                <Menu.Item key="accounts/maintenance">
+                  <Link to="/accounts/maintenance">
+                    <i className="icon icon-crypto"/>
+                    <IntlMessages id="sidebar.accounts.maintenance"/>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="accounts/fullList">
+                  <Link to="/accounts/fullList">
+                    <i className="icon icon-crm"/>
+                    <IntlMessages id="sidebar.accounts.fullList"/>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="accounts/suspends">
+                  <Link to="/accounts/suspends">
+                    <i className="icon icon-listing-dbrd"/>
+                    <IntlMessages id="sidebar.accounts.suspends"/>
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
 
               <MenuItemGroup key="main" className="gx-menu-group" title={<IntlMessages id="sidebar.main"/>}>
                 <SubMenu key="dashboard" className={this.getNavStyleSubMenuClass(navStyle)}
