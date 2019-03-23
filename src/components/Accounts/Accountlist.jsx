@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Table } from "antd";
+import { Button, Card, Table, Divider, Icon } from "antd";
 
 class Accountlist extends React.Component {
   state = {
@@ -60,6 +60,19 @@ class Accountlist extends React.Component {
       key: 'referenceNumberAmount',
       sorter: (a, b) => a.referenceNumberAmount - b.referenceNumberAmount,
       sortOrder: sortedInfo.columnKey === 'referenceNumberAmount' && sortedInfo.order,
+    }, {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <span>
+          <span className="gx-link">Delete</span>
+          <Divider type="vertical"/>
+          <span className="gx-link">Edit</span>
+          {/* <span className="gx-link ant-dropdown-link">
+            More actions <Icon type="down"/>
+          </span> */}
+        </span>
+      ),
     }];
 
     return columns;
