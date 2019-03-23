@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Drawer, message} from "antd";
+import {Button, Drawer, message, Breadcrumb, Card} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
 import contactList from "./data/contactList";
@@ -280,6 +280,7 @@ class FullList extends Component {
         <div className="gx-app-module">
 
           <div className="gx-d-block gx-d-lg-none">
+          
             <Drawer
               placement="left"
               closable={false}
@@ -293,7 +294,14 @@ class FullList extends Component {
           </div>
 
           <div className="gx-module-box">
-            <div className="gx-module-box-content">                        
+            <div className="gx-module-box-content">  
+              <Card className="gx-card" title="Account Full List">
+                <Breadcrumb>
+                  <Breadcrumb.Item>Home</Breadcrumb.Item>
+                  <Breadcrumb.Item><span className="gx-link">Accounts</span></Breadcrumb.Item>
+                  <Breadcrumb.Item>Accounts Full List</Breadcrumb.Item>
+                </Breadcrumb>
+              </Card>                    
                 {contactList.length === 0 ?
                   <div className="gx-h-100 gx-d-flex gx-align-items-center gx-justify-content-center">
                     {noContentFoundMessage}
