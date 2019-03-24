@@ -1,10 +1,15 @@
 import React from "react";
-import { Button, Card, Table, Divider, Icon } from "antd";
+import { Button, Card, Table, Divider, message } from "antd";
+import AddAccount from "components/Accounts/AddAccount"
 
+let contactId = 723812738;
 class Accountlist extends React.Component {
   state = {
     filteredInfo: {},
     sortedInfo: {},
+    addContactState:false,
+    showMessage: false,
+    alertMessage: ''
   };
 
   handleChange = (pagination, filters, sorter) => {
@@ -77,17 +82,70 @@ class Accountlist extends React.Component {
 
     return columns;
   }
+  onAddContact = () => {
+    this.setState({addContactState: true});
+  };
+  onContactClose = () => {
+    this.setState({addContactState: false});
+  };
+
+  onSaveContact = (data) => {
+    let isNew = true;
+    const contactList = this.state.allContact.map((contact) => {
+      if (contact.id === data.id) {
+        isNew = false;
+        return data
+      } else {
+        return contact
+      }
+    });
+    if (isNew) {
+      contactList.push(data);
+    }
+    this.setState({
+      alertMessage: isNew ? 'Contact Added Successfully' : 'Contact Updated Successfully',
+      showMessage: true,
+      contactList: contactList,
+      allContact: contactList
+    });
+    // this.onFilterOptionSelect(this.state.filterOption);
+  };
+
+  onDeleteContact = (data) => {
+    this.setState({
+      alertMessage: 'Contact Deleted Successfully',
+      showMessage: true,
+      allContact: this.state.allContact.filter((contact) => contact.id !== data.id),
+      contactList: this.state.allContact.filter((contact) => contact.id !== data.id)
+    })
+  };
 
   render() {
-    let { contactList } = this.props;
+    const { contactList } = this.props;
+    const { addContactState, showMessage, alertMessage} = this.state;
     const columns = this.createBindingColumns();
 
     return (
-      <Card>
+      <Card style={{marginBottom: 0, borderRadius: 0 }} >
         <div className="table-operations">
           <Button onClick={this.clear}>Clear filters and sorters</Button>
+          <Button onClick={this.onAddContact}> Add New Account </Button>
         </div>
         <Table className="gx-table-responsive" columns={columns} dataSource={contactList} onChange={this.handleChange} />
+        <AddAccount open={addContactState} contact={{
+          'id': contactId++,
+          'name': '',
+          'thumb': '',
+          'email': '',
+          'phone': '',  
+          'designation': '',
+          'selected': false,
+          'starred': false,
+          'frequently': false,
+        }} onSaveContact={this.onSaveContact}
+                    onContactClose={this.onContactClose} onDeleteContact={this.onDeleteContact}/>
+
+        {showMessage && message.info(<span id="message-id">{alertMessage}</span>, 3, this.handleRequestClose)}
       </Card>
     );
   }
